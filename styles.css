@@ -1,0 +1,224 @@
+:root {
+  --bg: #0b1020;
+  --panel: #121a33;
+  --text: #e8ecff;
+  --muted: #aab3d6;
+  --line: rgba(255,255,255,.12);
+
+  /* Requested player colours */
+  --p1: #21d6d1;   /* turquoise blue (Player 1, columns) */
+  --p2: #a06bff;   /* purple (Player 2, rows) */
+
+  --nash: #37d67a;
+  --pareto: #4aa3ff;
+  --both: #f7c948;
+  --bad: #ff5a6f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.wrap {
+  max-width: 1150px;
+  margin: 24px auto;
+  padding: 16px;
+}
+
+.panel {
+  background: rgba(18,26,51,.92);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+h1 { margin: 0 0 10px; font-size: 20px; }
+.sub { margin: 0 0 16px; color: var(--muted); }
+
+.playerNames {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+input, button {
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.08);
+  color: var(--text);
+  outline: none;
+}
+
+input:focus { border-color: rgba(74,163,255,.65); }
+
+button {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+button:hover { background: rgba(255,255,255,.12); }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.06);
+}
+
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dot.nash { background: var(--nash); }
+.dot.pareto { background: var(--pareto); }
+.dot.both { background: var(--both); }
+.dot.bad { background: var(--bad); }
+
+.gridWrap {
+  overflow: auto;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+  background: rgba(0,0,0,.10);
+}
+
+th, td {
+  border: 1px solid var(--line);
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {
+  background: rgba(255,255,255,.06);
+  font-weight: 600;
+}
+
+th.playerHeader {
+  background: rgba(255,255,255,.08);
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+th.corner {
+  background: rgba(255,255,255,.06);
+  min-width: 160px;
+}
+
+th.sidePlayer {
+  min-width: 140px;
+}
+
+input.name {
+  width: 140px;
+  text-align: center;
+  background: rgba(255,255,255,.06);
+}
+
+td.cell { background: rgba(255,255,255,.03); }
+
+.payoffs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  justify-items: stretch;
+}
+
+.payoffBox {
+  border-radius: 12px;
+  padding: 8px;
+  border: 1px solid var(--line);
+}
+
+.payoffBox.p1 {
+  background: color-mix(in srgb, var(--p1) 22%, transparent);
+}
+.payoffBox.p2 {
+  background: color-mix(in srgb, var(--p2) 22%, transparent);
+}
+
+.payoffBox label {
+  margin: 0 0 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.payoffBox input.payoff {
+  width: 64px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.15);
+}
+
+.payoffBox.p1 input.payoff { color: var(--p1); }
+.payoffBox.p2 input.payoff { color: var(--p2); }
+
+td.nash { outline: 3px solid var(--nash); outline-offset: -3px; }
+td.pareto { box-shadow: inset 0 0 0 3px var(--pareto); }
+td.both {
+  outline: 3px solid var(--both);
+  outline-offset: -3px;
+  box-shadow: inset 0 0 0 3px var(--both);
+}
+td.bad { box-shadow: inset 0 0 0 3px var(--bad); }
+
+.results {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.box {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255,255,255,.04);
+}
+
+.box h2 { font-size: 14px; margin: 0 0 8px; }
+.box ul { margin: 0; padding-left: 18px; color: var(--muted); }
+.small { margin-top: 8px; color: var(--muted); font-size: 12px; }
+
+@media (max-width: 900px) {
+  .controls { grid-template-columns: 1fr 1fr; }
+}

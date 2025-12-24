@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>2-Player Normal-Form Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <h1>2-Player Normal-Form Game</h1>
+      <p class="sub">
+        Conventions: <b>Player 1 = columns</b> (top). <b>Player 2 = rows</b> (left).
+        In each cell: Player 1 payoff first, then Player 2 payoff.
+      </p>
+
+      <div class="playerNames">
+        <div>
+          <label>Player 1 name (columns)</label>
+          <input id="p1Name" value="Player 1">
+        </div>
+        <div>
+          <label>Player 2 name (rows)</label>
+          <input id="p2Name" value="Player 2">
+        </div>
+      </div>
+
+      <div class="controls">
+        <div>
+          <label>Player 2 strategies (rows)</label>
+          <input id="rows" type="number" min="1" value="2">
+        </div>
+        <div>
+          <label>Player 1 strategies (cols)</label>
+          <input id="cols" type="number" min="1" value="2">
+        </div>
+        <button id="buildBtn">Build Matrix</button>
+        <button id="computeBtn">Compute</button>
+      </div>
+
+      <div class="legend">
+        <span class="tag"><span class="dot nash"></span> Pure Nash</span>
+        <span class="tag"><span class="dot pareto"></span> Pareto optimal</span>
+        <span class="tag"><span class="dot both"></span> Both</span>
+        <span class="tag"><span class="dot bad"></span> Invalid</span>
+      </div>
+
+      <div class="gridWrap" id="gridWrap"></div>
+
+      <div class="results">
+        <div class="box">
+          <h2>Pure Nash equilibria</h2>
+          <ul id="nashList"></ul>
+          <p class="small">Pure Nash = mutual best responses.</p>
+        </div>
+
+        <div class="box">
+          <h2>Pareto optimal outcomes</h2>
+          <ul id="paretoList"></ul>
+          <p class="small">Pareto optimal = not dominated by any other outcome.</p>
+        </div>
+
+        <div class="box">
+          <h2>Dominance relationships</h2>
+          <ul id="dominanceList"></ul>
+          <p class="small">Outcome A dominates B if both payoffs are ≥ and at least one is &gt;.</p>
+        </div>
+      </div>
+
+      <p id="status" class="small"></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
